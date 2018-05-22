@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
 import static junit.framework.Assert.assertEquals;
 
 /**
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 public class BufferedSumoLogicAppenderTest {
 

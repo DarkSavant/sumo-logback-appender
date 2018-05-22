@@ -43,7 +43,7 @@ import static com.sumologic.logback.queue.CostBoundedConcurrentQueue.CostAssigne
 /**
  * Appender that sends log messages to Sumo Logic.
  *
- * @author Jose Muniz (jose@sumologic.com)
+ * author Jose Muniz (jose@sumologic.com)
  */
 @Slf4j
 public class BufferedSumoLogicAppender extends AppenderBase<ILoggingEvent> {
@@ -107,7 +107,6 @@ public class BufferedSumoLogicAppender extends AppenderBase<ILoggingEvent> {
     @Override
     public void start() {
         super.start();
-        log.debug("Activating options");
 
         /* Initialize queue */
         if (queue == null) {
@@ -151,7 +150,6 @@ public class BufferedSumoLogicAppender extends AppenderBase<ILoggingEvent> {
     @Override
     protected void append(ILoggingEvent event) {
         if (!checkEntryConditions()) {
-            log.warn("Appender not initialized. Dropping log entry");
             return;
         }
 
@@ -167,7 +165,7 @@ public class BufferedSumoLogicAppender extends AppenderBase<ILoggingEvent> {
         try {
             queue.add(builder.toString());
         } catch (Exception e) {
-            log.error("Unable to insert log entry into log queue. ", e);
+            throw new RuntimeException(e);
         }
     }
 

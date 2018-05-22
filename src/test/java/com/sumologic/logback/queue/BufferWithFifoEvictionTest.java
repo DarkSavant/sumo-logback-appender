@@ -37,7 +37,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 public class BufferWithFifoEvictionTest {
 

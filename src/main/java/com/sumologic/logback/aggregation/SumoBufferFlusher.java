@@ -32,7 +32,7 @@ import com.sumologic.logback.queue.BufferWithEviction;
 import java.util.concurrent.*;
 
 /**
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 public class SumoBufferFlusher {
     private SumoBufferFlushingTask flushingTask;

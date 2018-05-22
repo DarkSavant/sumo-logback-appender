@@ -33,7 +33,7 @@ import com.sumologic.logback.queue.BufferWithEviction;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 @Slf4j
 public class SumoBufferFlushingTask extends BufferFlushingTask<String, String> {

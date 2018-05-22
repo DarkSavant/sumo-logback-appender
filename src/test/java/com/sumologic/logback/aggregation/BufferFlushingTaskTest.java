@@ -36,7 +36,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 public class BufferFlushingTaskTest {
 

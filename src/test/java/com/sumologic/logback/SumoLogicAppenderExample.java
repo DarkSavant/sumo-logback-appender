@@ -28,7 +28,7 @@ package com.sumologic.logback;
 /**
  * Simple example on using the Sumo Logic Log4J appender.
  *
- * @author Stefan Zier (stefan@sumologic.com)
+ * author Stefan Zier (stefan@sumologic.com)
  */
 public class SumoLogicAppenderExample {
 //  private static Logger logger = Logger.getLogger(SumoLogicAppenderExample.class);

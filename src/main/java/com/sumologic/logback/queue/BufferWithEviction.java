@@ -31,7 +31,7 @@ import java.util.Collection;
  * A concurrent buffer with a maximum capacity that, upon reaching said capacity, evicts some
  * element in the queue to ensure the new element can fit.
  *
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  * Date: 4/5/13
  * Time: 1:51 AM
  */

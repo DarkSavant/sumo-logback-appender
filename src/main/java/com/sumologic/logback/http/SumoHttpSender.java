@@ -43,7 +43,7 @@ import org.apache.http.util.EntityUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 @Slf4j
 public class SumoHttpSender {

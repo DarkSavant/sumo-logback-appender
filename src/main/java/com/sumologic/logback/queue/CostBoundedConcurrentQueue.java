@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * strings it contains.  It implements a strict subset of the functionality of interface
  * <tt>java.util.Queue</tt>
  *
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 public class CostBoundedConcurrentQueue<T> {
 

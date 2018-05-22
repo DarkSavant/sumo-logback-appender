@@ -25,8 +25,11 @@
  */
 package com.sumologic.logback;
 
-import java.io.IOException;
-
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.classic.spi.IThrowableProxy;
+import ch.qos.logback.core.AppenderBase;
+import ch.qos.logback.core.Layout;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -39,17 +42,13 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.IThrowableProxy;
-import ch.qos.logback.core.AppenderBase;
-import ch.qos.logback.core.Layout;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
 
 /**
  * Appender that sends log messages to Sumo Logic.
  *
- * @author Stefan Zier (stefan@sumologic.com)
- * @author Scott Bessler (scott@relateiq.com) adapted log4j appender for logback
+ * author Stefan Zier (stefan@sumologic.com)
+ * author Scott Bessler (scott@relateiq.com) adapted log4j appender for logback
  */
 @Slf4j
 public class SumoLogicAppender extends AppenderBase<ILoggingEvent> {
@@ -111,7 +110,6 @@ public class SumoLogicAppender extends AppenderBase<ILoggingEvent> {
 
     private boolean checkEntryConditions() {
         if (httpClient == null) {
-            log.warn("HttpClient not initialized.");
             return false;
         }
 
@@ -126,12 +124,10 @@ public class SumoLogicAppender extends AppenderBase<ILoggingEvent> {
             HttpResponse response = httpClient.execute(post);
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode != 200) {
-                log.warn("Received HTTP error from Sumo Service: {}", statusCode);
             }
             //need to consume the body if you want to re-use the connection.
             EntityUtils.consume(response.getEntity());
         } catch (IOException e) {
-            log.warn("Could not send log to Sumo Logic", e);
             try {
                 post.abort();
             } catch (Exception ignore) {

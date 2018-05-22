@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Task to perform a single flushing check
  *
- * @author: Jose Muniz (jose@sumologic.com)
+ * author: Jose Muniz (jose@sumologic.com)
  */
 @Slf4j
 public abstract class BufferFlushingTask<In, Out> implements Runnable {
