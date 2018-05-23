@@ -9,8 +9,8 @@ A logback appender that sends logs in json format straight to Sumo Logic.
 
         <dependency>
             <groupId>com.github.wmifsud.sumo</groupId>
-            <artifactId>sumo-logback-appender</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
+            <artifactId>sumo-logback-appender-java-7</artifactId>
+            <version>1.3.0</version>
         </dependency>
         
 2. Add the following logback-spring.xml to your application:
@@ -37,8 +37,11 @@ A logback appender that sends logs in json format straight to Sumo Logic.
                 <appender name="sumoLogicAppender" class="com.sumologic.logback.BufferedSumoLogicAppender">
                     <url>${sumo_logic_url}</url>
                     <messagesPerRequest>1</messagesPerRequest>
-                    <layout class="com.sumologic.logback.json.CustomJsonLayout">
+                    <layout class="com.auctionedge.logback.EdgeConnectJsonLayout">
                         <includeMDC>false</includeMDC>
+                        <auctionId>${get_from_environment}</auctionId>
+                        <!-- auctionIdLogKey defaults to pipeline_id -->
+                        <auctionIdLogKey>some_other_key</auctionIdLogKey>
                         <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
                             <prettyPrint>false</prettyPrint>
                         </jsonFormatter>
