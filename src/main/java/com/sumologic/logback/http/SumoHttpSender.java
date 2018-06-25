@@ -28,6 +28,7 @@ package com.sumologic.logback.http;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -83,17 +84,14 @@ public class SumoHttpSender {
     public void init() {
 	    try {
 		    SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
-		    HttpParams params = new BasicHttpParams();
-	        HttpConnectionParams.setConnectionTimeout(params, connectionTimeout);
-	        HttpConnectionParams.setSoTimeout(params, socketTimeout);
 		    final TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
 		    trustManagerFactory.init((KeyStore) null);
 		    sslContext.init(null, trustManagerFactory.getTrustManagers(), new java.security.SecureRandom());
-	        SSLConnectionSocketFactory factory = new SSLConnectionSocketFactory(sslContext, new String[]{"TLSv1.2"},
-			        null,
-			        new NoopHostnameVerifier());
+	        SSLConnectionSocketFactory factory = new SSLConnectionSocketFactory(sslContext, SSLConnectionSocketFactory.getDefaultHostnameVerifier());
+	        RequestConfig requestConfig = RequestConfig.custom().setConnectionRequestTimeout(connectionTimeout).setConnectTimeout(socketTimeout).build();
 	        httpClient = HttpClients.custom().setSSLSocketFactory(factory)
 	                .setConnectionTimeToLive(connectionTimeout, TimeUnit.SECONDS)
+			        .setDefaultRequestConfig(requestConfig)
 	                .build();
 	    } catch (Exception e) {
 		    throw new RuntimeException(e);
